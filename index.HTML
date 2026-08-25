@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"OnlineStore","name":"MEHDISHOP","description":"متجر CHAOUISHOP المغربي لبيع المواد المنزلية، أدوات المطبخ والأجهزة الإلكترونية بأثمنة مناسبة. الدفع عند الاستلام، توصيل سريع لجميع مدن المغرب خلال 24 إلى 48 ساعة.","url":"https://3000-ib22o2yphjrb7hu7wywn8.e2b.app","currenciesAccepted":"MAD","paymentAccepted":"الدفع عند الاستلام","areaServed":{"@type":"Country","name":"المغرب"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"OnlineStore","name":"MEHDISHOP","description":"متجر CHAOUISHOP المغربي لبيع المواد المنزلية، أدوات المطبخ والأجهزة الإلكترونية بأثمنة مناسبة. الدفع عند الاستلام، توصيل سريع لجميع مدن المغرب خلال 24 إلى 48 ساعة.","url":"https://3000-iqww9ld80itb0asu5vc1q.e2b.app","currenciesAccepted":"MAD","paymentAccepted":"الدفع عند الاستلام","areaServed":{"@type":"Country","name":"المغرب"}}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -160,16 +160,37 @@ label.lb{display:block;font-size:12px;font-weight:800;color:rgba(14,23,38,.6);ma
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .logo{user-select:none;-webkit-user-select:none}
 /* ===== لوحة التحكم داخل الملف ===== */
-#adm{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;flex-direction:column;overflow:hidden}
-#adm.on{display:flex}
-.ahead{background:var(--ink);color:var(--paper);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ahead .logo{color:var(--paper);font-size:23px}
-.atabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.atabs::-webkit-scrollbar{display:none}
-.atab{flex-shrink:0;border-radius:9px;padding:8px 15px;font-size:13px;font-weight:800;color:rgba(245,242,234,.55);transition:.2s;white-space:nowrap}
+#adm{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;overflow:hidden}
+#adm.on{display:flex;flex-direction:column}
+@media(min-width:1024px){#adm.on{flex-direction:row}}
+/* القائمة الجانبية */
+.aside{background:var(--ink);padding:14px 16px;flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+@media(min-width:1024px){.aside{width:250px;height:100%;overflow-y:auto;padding:20px}}
+.abrand{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.abrand .logo{color:var(--paper);font-size:23px}
+.atag{background:rgba(255,181,36,.15);color:var(--saf);border-radius:6px;padding:4px 9px;font-size:10px;font-weight:800}
+@media(min-width:1024px){.atag{display:none}}
+.anav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:6px}
+.anav::-webkit-scrollbar{display:none}
+@media(min-width:1024px){.anav{flex-direction:column;overflow:visible;margin-top:26px}}
+.atab{flex-shrink:0;display:flex;align-items:center;gap:10px;border-radius:9px;padding:10px 15px;font-size:13px;font-weight:800;color:rgba(245,242,234,.55);transition:.2s;white-space:nowrap;text-align:right}
 .atab:hover{background:rgba(255,255,255,.08);color:var(--paper)}
 .atab.on{background:var(--saf);color:var(--ink)}
-.abody{flex:1;overflow-y:auto;padding:20px;background:var(--paper)}
+.afoot{display:none}
+@media(min-width:1024px){.afoot{display:grid;gap:4px;margin-top:auto;padding-top:26px}}
+.alink{display:flex;align-items:center;gap:10px;border-radius:9px;padding:10px 15px;font-size:13px;font-weight:800;color:rgba(245,242,234,.55);transition:.2s;text-decoration:none}
+.alink:hover{background:rgba(255,255,255,.08);color:var(--paper)}
+.alink.warn:hover{background:rgba(214,69,69,.16);color:#ff8f8f}
+/* المحتوى */
+.amain{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.atop{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(14,23,38,.1);background:rgba(245,242,234,.92);backdrop-filter:blur(10px);padding:14px 20px;flex-shrink:0}
+.atop h1{font-family:'Lalezar',cursive;font-weight:400;font-size:25px;line-height:1}
+.atop p{font-size:12px;font-weight:700;color:rgba(14,23,38,.45);margin-top:4px}
+.atools{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.tbtn{border:1px solid rgba(14,23,38,.15);background:#fff;border-radius:9px;padding:8px 13px;font-size:12px;font-weight:800;transition:.2s;white-space:nowrap}
+.tbtn:hover{border-color:var(--maj);color:var(--maj2)}
+.tbtn.dan:hover{border-color:rgba(214,69,69,.4);color:var(--dan)}
+.abody{flex:1;overflow-y:auto;padding:20px}
 .astats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(min-width:800px){.astats{grid-template-columns:repeat(4,1fr)}}
 .astat{background:#fff;border:1px solid rgba(14,23,38,.1);border-radius:13px;padding:18px}
@@ -277,7 +298,7 @@ label.lb{display:block;font-size:12px;font-weight:800;color:rgba(14,23,38,.6);ma
       <div class="logo" id="logo2" style="color:var(--paper)">MEHDI<em>SHOP</em></div>
       <p style="margin-top:14px;max-width:330px">متجر مغربي متخصص في المواد المنزلية والإلكترونيات. نختارو ليك أحسن المنتجات بأثمنة مناسبة، مع التوصيل لجميع المدن والدفع عند الاستلام.</p>
       <div class="fbtns">
-        <a class="fb1" id="fTel" href="tel:0600-000000">📞 اتصل بنا</a>
+        <a class="fb1" id="fTel" href="tel:0619355384">📞 اتصل بنا</a>
         <a class="fb2" id="fWa" href="https://wa.me/212600000000" target="_blank" rel="noreferrer">💬 واتساب</a>
       </div>
     </div>
@@ -288,7 +309,7 @@ label.lb{display:block;font-size:12px;font-weight:800;color:rgba(14,23,38,.6);ma
     <div>
       <h4>معلومات الاتصال</h4>
       <ul>
-        <li>📞 <span dir="ltr" id="fTel2">0600-000000</span></li>
+        <li>📞 <span dir="ltr" id="fTel2">0619355384</span></li>
         <li>🚚 التوصيل لجميع مدن المغرب</li>
         <li>💵 الدفع عند الاستلام</li>
         <li>🕘 الاثنين–السبت: 9:00 – 20:00</li>
@@ -312,16 +333,27 @@ label.lb{display:block;font-size:12px;font-weight:800;color:rgba(14,23,38,.6);ma
 
 <!-- ===== لوحة الإدارة (5 نقرات على الشعار) ===== -->
 <div id="adm">
-  <div class="ahead">
-    <div class="logo">MEHDI<em>SHOP</em></div>
-    <div class="atabs" id="atabs"></div>
-    <div style="display:flex;gap:8px;margin-right:auto;align-items:center">
-      <button class="atab" id="apiChip" onclick="changeApi()" title="عنوان المتجر — اضغط للتغيير" style="font-family:monospace;font-size:11px;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" dir="ltr"></button>
-      <button class="atab" onclick="loadAdmin()" title="تحديث">🔄 تحديث</button>
-      <button class="atab" onclick="closeAdmin()" title="إغلاق">✕ إغلاق</button>
+  <aside class="aside">
+    <div class="abrand">
+      <div class="logo">MEHDI<em>SHOP</em></div>
+      <span class="atag">لوحة التحكم</span>
     </div>
+    <nav class="anav" id="atabs"></nav>
+    <div class="afoot">
+      <button class="alink" onclick="closeAdmin()">🏪 رجوع إلى المتجر</button>
+      <button class="alink" id="apiChip" onclick="changeApi()" title="عنوان المتجر — اضغط للتغيير" style="font-family:monospace;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" dir="ltr"></button>
+    </div>
+  </aside>
+  <div class="amain">
+    <header class="atop">
+      <div><h1 id="atitle">نظرة عامة</h1><p id="asub">ملخص نشاط متجرك اليوم</p></div>
+      <div class="atools">
+        <button class="tbtn" onclick="loadAdmin()">🔄 تحديث</button>
+        <button class="tbtn dan" onclick="closeAdmin()">✕ إغلاق</button>
+      </div>
+    </header>
+    <div class="abody" id="abody"></div>
   </div>
-  <div class="abody" id="abody"></div>
 </div>
 
 <div class="modal" id="pmodal">
@@ -332,7 +364,7 @@ label.lb{display:block;font-size:12px;font-weight:800;color:rgba(14,23,38,.6);ma
 </div>
 
 <script>
-var D = {"products":[{"id":8,"name":"ساعة ذكية بشاشة أموليد","description":"ساعة ذكية بشاشة AMOLED عالية الوضوح، قياس نبض القلب والأكسجين والنوم، أكثر من 100 وضع رياضي، مقاومة للماء، بطارية 10 أيام.","price":699,"oldPrice":899,"image":"/images/products/smartwatch.jpg","category":"إلكترونيات","stock":12,"featured":true},{"id":7,"name":"سماعات بلوتوث لاسلكية بعزل الضوضاء","description":"سماعات فوق الأذن بعزل نشط للضوضاء، بطارية تدوم 40 ساعة، بلوتوث 5.3 مع اتصال بجهازين في نفس الوقت، قابلة للطي مع حقيبة حمل.","price":449,"oldPrice":599,"image":"/images/products/headphones.jpg","category":"إلكترونيات","stock":16,"featured":true},{"id":6,"name":"مكنسة روبوت ذكية بالليزر","description":"مكنسة روبوت بخرائط ليزر ذكية، شفط قوي 2700Pa، تحكم عبر التطبيق والأوامر الصوتية، عودة تلقائية لقاعدة الشحن. نظف منزلك وأنت مرتاح.","price":1490,"oldPrice":1990,"image":"/images/products/robotvacuum.jpg","category":"إلكترونيات","stock":6,"featured":true},{"id":5,"name":"آلة إسبريسو أوتوماتيكية 15 بار","description":"آلة قهوة إسبريسو بمضخة إيطالية 15 بار، فوهة بخار لتسخين وتكثيف الحليب، خزان ماء 1.2 لتر قابل للإزالة. قهوتك المفضلة في المنزل بجودة المقاهي.","price":1290,"oldPrice":1590,"image":"/images/products/espresso.jpg","category":"المطبخ","stock":7,"featured":true},{"id":4,"name":"طقم أواني طبخ جرانيت 10 قطع","description":"طقم كامل بطلاء جرانيت مضاد للالتصاق، يتكون من 4 طناجر بأحجام مختلفة + مقلاة + غطاء زجاجي لكل قطعة. مناسب لجميع أنواع المواقد بما فيها التعريفي.","price":899,"oldPrice":1199,"image":"/images/products/cookware.jpg","category":"المطبخ","stock":9,"featured":true},{"id":2,"name":"خلاط كهربائي احترافي 800 واط","description":"خلاط زجاجي بسعة 1.5 لتر مع 3 سرعات ونبض، شفرات ستانلس حادة تسحق الثلج والفواكه المجمدة. مثالي للعصائر والحساء والصلصات.","price":329,"oldPrice":429,"image":"/images/products/blender.jpg","category":"المطبخ","stock":22,"featured":true},{"id":1,"name":"قلاية هوائية رقمية 5.5 لتر","description":"قلاية هوائية بشاشة رقمية تعمل باللمس، سعة عائلية 5.5 لتر، 8 برامج طبخ مسبقة، سلة قابلة للإزالة وسهلة التنظيف. اطبخ بدون زيت تقريباً وبنتائج مقرمشة ذهبية.","price":749,"oldPrice":999,"image":"/images/products/airfryer.jpg","category":"المطبخ","stock":12,"featured":true},{"id":14,"name":"سكين شيف ألماني ستانلس 20 سم","description":"سكين شيف احترافي من الستانلس ستيل الألماني بمقبض مريح مضاد للانزلاق، نصل حاد يدوم طويلاً، مثالي لكل مهام التقطيع.","price":189,"oldPrice":null,"image":"https://images.pexels.com/photos/30327171/pexels-photo-30327171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المطبخ","stock":16,"featured":false},{"id":13,"name":"إبريق شاي زجاجي مقاوم للحرارة","description":"إبريق شاي من الزجاج البوروسيليكات المقاوم للحرارة مع مصفاة ستانلس، سعة 1 لتر، مثالي لتقديم أتاي المغربي بأناقة.","price":149,"oldPrice":189,"image":"https://images.pexels.com/photos/10900909/pexels-photo-10900909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المطبخ","stock":20,"featured":false},{"id":12,"name":"كاميرا فورية للطباعة الفورية","description":"كاميرا فورية بطابع ممتع تطبع الصور بحجم بطاقة الائتمان خلال ثوانٍ، عدسة سيلفي بمرآة، مثالية للرحلات والذكريات.","price":1150,"oldPrice":1350,"image":"https://images.pexels.com/photos/16045125/pexels-photo-16045125.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"إلكترونيات","stock":8,"featured":false},{"id":11,"name":"زربية مغربية تقليدية 160×230","description":"زربية مغربية منسوجة يدوياً بألوان دافئة ونقوش تقليدية أصيلة، تضيف لمسة مغربية راقية للصالون أو غرفة الجلوس.","price":799,"oldPrice":999,"image":"https://images.pexels.com/photos/19464831/pexels-photo-19464831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المنزل","stock":5,"featured":false},{"id":10,"name":"مروحة برجية رقمية بجهاز تحكم","description":"مروحة برجية أنيقة بارتفاع 110 سم، 3 أوضاع هواء مع مؤقت حتى 8 ساعات، جهاز تحكم عن بعد، تشغيل هادئ مثالي لغرف النوم.","price":549,"oldPrice":699,"image":"/images/products/towerfan.jpg","category":"المنزل","stock":11,"featured":false},{"id":9,"name":"مكبر صوت بلوتوث 360°","description":"مكبر صوت محمول بصوت محيطي 360 درجة، مقاوم للماء والغبار IP67، بطارية 20 ساعة، مثالي للرحلات والمناسبات.","price":349,"oldPrice":null,"image":"/images/products/speaker.jpg","category":"إلكترونيات","stock":25,"featured":false},{"id":3,"name":"غلاية كهربائية ستانلس 1.8 لتر","description":"غلاية من الستانلس ستيل المقاوم للصدأ، غليان سريع مع إيقاف تلقائي وحماية من التشغيل الفارغ، قاعدة دوارة 360 درجة.","price":199,"oldPrice":259,"image":"/images/products/kettle.jpg","category":"المطبخ","stock":30,"featured":false}],"categories":["المطبخ","إلكترونيات","المنزل"],"shippingFee":35,"freeThreshold":500,"apiBase":"https://3000-ib22o2yphjrb7hu7wywn8.e2b.app","whatsapp":"212600000000","phone":"0600-000000","localImages":false};
+var D = {"products":[{"id":8,"name":"ساعة ذكية بشاشة أموليد","description":"ساعة ذكية بشاشة AMOLED عالية الوضوح، قياس نبض القلب والأكسجين والنوم، أكثر من 100 وضع رياضي، مقاومة للماء، بطارية 10 أيام.","price":699,"oldPrice":899,"image":"/images/products/smartwatch.jpg","category":"إلكترونيات","stock":12,"featured":true},{"id":7,"name":"سماعات بلوتوث لاسلكية بعزل الضوضاء","description":"سماعات فوق الأذن بعزل نشط للضوضاء، بطارية تدوم 40 ساعة، بلوتوث 5.3 مع اتصال بجهازين في نفس الوقت، قابلة للطي مع حقيبة حمل.","price":449,"oldPrice":599,"image":"/images/products/headphones.jpg","category":"إلكترونيات","stock":16,"featured":true},{"id":6,"name":"مكنسة روبوت ذكية بالليزر","description":"مكنسة روبوت بخرائط ليزر ذكية، شفط قوي 2700Pa، تحكم عبر التطبيق والأوامر الصوتية، عودة تلقائية لقاعدة الشحن. نظف منزلك وأنت مرتاح.","price":1490,"oldPrice":1990,"image":"/images/products/robotvacuum.jpg","category":"إلكترونيات","stock":6,"featured":true},{"id":5,"name":"آلة إسبريسو أوتوماتيكية 15 بار","description":"آلة قهوة إسبريسو بمضخة إيطالية 15 بار، فوهة بخار لتسخين وتكثيف الحليب، خزان ماء 1.2 لتر قابل للإزالة. قهوتك المفضلة في المنزل بجودة المقاهي.","price":1290,"oldPrice":1590,"image":"/images/products/espresso.jpg","category":"المطبخ","stock":7,"featured":true},{"id":4,"name":"طقم أواني طبخ جرانيت 10 قطع","description":"طقم كامل بطلاء جرانيت مضاد للالتصاق، يتكون من 4 طناجر بأحجام مختلفة + مقلاة + غطاء زجاجي لكل قطعة. مناسب لجميع أنواع المواقد بما فيها التعريفي.","price":899,"oldPrice":1199,"image":"/images/products/cookware.jpg","category":"المطبخ","stock":9,"featured":true},{"id":2,"name":"خلاط كهربائي احترافي 800 واط","description":"خلاط زجاجي بسعة 1.5 لتر مع 3 سرعات ونبض، شفرات ستانلس حادة تسحق الثلج والفواكه المجمدة. مثالي للعصائر والحساء والصلصات.","price":329,"oldPrice":429,"image":"/images/products/blender.jpg","category":"المطبخ","stock":22,"featured":true},{"id":1,"name":"قلاية هوائية رقمية 5.5 لتر","description":"قلاية هوائية بشاشة رقمية تعمل باللمس، سعة عائلية 5.5 لتر، 8 برامج طبخ مسبقة، سلة قابلة للإزالة وسهلة التنظيف. اطبخ بدون زيت تقريباً وبنتائج مقرمشة ذهبية.","price":749,"oldPrice":999,"image":"/images/products/airfryer.jpg","category":"المطبخ","stock":12,"featured":true},{"id":14,"name":"سكين شيف ألماني ستانلس 20 سم","description":"سكين شيف احترافي من الستانلس ستيل الألماني بمقبض مريح مضاد للانزلاق، نصل حاد يدوم طويلاً، مثالي لكل مهام التقطيع.","price":189,"oldPrice":null,"image":"https://images.pexels.com/photos/30327171/pexels-photo-30327171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المطبخ","stock":16,"featured":false},{"id":13,"name":"إبريق شاي زجاجي مقاوم للحرارة","description":"إبريق شاي من الزجاج البوروسيليكات المقاوم للحرارة مع مصفاة ستانلس، سعة 1 لتر، مثالي لتقديم أتاي المغربي بأناقة.","price":149,"oldPrice":189,"image":"https://images.pexels.com/photos/10900909/pexels-photo-10900909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المطبخ","stock":20,"featured":false},{"id":12,"name":"كاميرا فورية للطباعة الفورية","description":"كاميرا فورية بطابع ممتع تطبع الصور بحجم بطاقة الائتمان خلال ثوانٍ، عدسة سيلفي بمرآة، مثالية للرحلات والذكريات.","price":1150,"oldPrice":1350,"image":"https://images.pexels.com/photos/16045125/pexels-photo-16045125.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"إلكترونيات","stock":8,"featured":false},{"id":11,"name":"زربية مغربية تقليدية 160×230","description":"زربية مغربية منسوجة يدوياً بألوان دافئة ونقوش تقليدية أصيلة، تضيف لمسة مغربية راقية للصالون أو غرفة الجلوس.","price":799,"oldPrice":999,"image":"https://images.pexels.com/photos/19464831/pexels-photo-19464831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","category":"المنزل","stock":5,"featured":false},{"id":10,"name":"مروحة برجية رقمية بجهاز تحكم","description":"مروحة برجية أنيقة بارتفاع 110 سم، 3 أوضاع هواء مع مؤقت حتى 8 ساعات، جهاز تحكم عن بعد، تشغيل هادئ مثالي لغرف النوم.","price":549,"oldPrice":699,"image":"/images/products/towerfan.jpg","category":"المنزل","stock":11,"featured":false},{"id":9,"name":"مكبر صوت بلوتوث 360°","description":"مكبر صوت محمول بصوت محيطي 360 درجة، مقاوم للماء والغبار IP67، بطارية 20 ساعة، مثالي للرحلات والمناسبات.","price":349,"oldPrice":null,"image":"/images/products/speaker.jpg","category":"إلكترونيات","stock":25,"featured":false},{"id":3,"name":"غلاية كهربائية ستانلس 1.8 لتر","description":"غلاية من الستانلس ستيل المقاوم للصدأ، غليان سريع مع إيقاف تلقائي وحماية من التشغيل الفارغ، قاعدة دوارة 360 درجة.","price":199,"oldPrice":259,"image":"/images/products/kettle.jpg","category":"المطبخ","stock":30,"featured":false}],"categories":["المطبخ","إلكترونيات","المنزل"],"shippingFee":35,"freeThreshold":500,"apiBase":"https://3000-iqww9ld80itb0asu5vc1q.e2b.app","whatsapp":"212600000000","phone":"0619355384","localImages":false};
 var cart = [];
 var cat = 'الكل', q = '', step = 'cart', lastRef = '', lastTotal = 0;
 
@@ -716,12 +748,27 @@ function closeAdmin(){
     if(location.hash==='#admin') requestAdmin();
   });
 })();
+var A_TABS=[
+  ['dash','📊','نظرة عامة','ملخص نشاط متجرك اليوم'],
+  ['prods','🏷️','المنتجات','أضف، عدّل الأثمنة أو أوقف المنتجات'],
+  ['orders','📦','الطلبات','تتبع طلبات العملاء وحدّث حالاتها'],
+  ['set','⚙️','الإعدادات','التوصيل، الأقسام ومعلومات التواصل'],
+  ['links','🔗','الروابط','روابط المتجر ولوحة التحكم والمشاركة']
+];
+
 function renderTabs(){
-  var t=[['dash','📊 نظرة عامة'],['orders','📦 الطلبات'],['prods','🏷️ المنتجات'],['set','⚙️ الإعدادات']], h='';
-  for(var i=0;i<t.length;i++){
-    h+='<button class="atab'+(atab===t[i][0]?' on':'')+'" onclick="setTab(\''+t[i][0]+'\')">'+t[i][1]+'</button>';
+  var h='';
+  for(var i=0;i<A_TABS.length;i++){
+    var t=A_TABS[i];
+    h+='<button class="atab'+(atab===t[0]?' on':'')+'" onclick="setTab(\''+t[0]+'\')"><span>'+t[1]+'</span>'+t[2]+'</button>';
   }
   document.getElementById('atabs').innerHTML=h;
+  for(var j=0;j<A_TABS.length;j++){
+    if(A_TABS[j][0]===atab){
+      document.getElementById('atitle').textContent=A_TABS[j][2];
+      document.getElementById('asub').textContent=A_TABS[j][3];
+    }
+  }
 }
 function setTab(t){ atab=t; openRow=null; renderTabs(); renderAdmin(); }
 
@@ -794,6 +841,7 @@ function renderAdmin(){
   if(atab==='dash') return renderDash();
   if(atab==='orders') return renderOrders();
   if(atab==='set') return renderSettings();
+  if(atab==='links') return renderLinks();
   return renderProds();
 }
 
@@ -895,6 +943,69 @@ function setStatus(id,st){
     for(var i=0;i<aOrders.length;i++){ if(aOrders[i].id===id) aOrders[i].status=u.status||st; }
     renderOrders(); toast('تم تحديث حالة الطلب');
   }).catch(function(){ toast('تعذر التحديث'); });
+}
+
+/* ======================= الروابط ======================= */
+
+function copyTxt(t, btn){
+  function done(){ var o=btn.textContent; btn.textContent='✓ تم'; setTimeout(function(){ btn.textContent=o; },1800); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done).catch(function(){ fallback(); });
+  } else fallback();
+  function fallback(){
+    var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){ toast('انسخ يدوياً'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function linkRow(label, url, hint){
+  return '<div style="margin-bottom:14px">'
+    +'<label class="lb">'+label+'</label>'
+    +'<div style="display:flex;gap:8px">'
+    +'<input readonly dir="ltr" value="'+esc(url)+'" onfocus="this.select()" style="font-family:monospace;font-size:11px;background:var(--paper)">'
+    +'<button class="abtn gray" style="flex-shrink:0" onclick="copyTxt(this.previousElementSibling.value,this)">نسخ</button></div>'
+    +(hint?'<p style="font-size:11px;font-weight:700;color:rgba(14,23,38,.45);margin-top:5px">'+hint+'</p>':'')
+    +'</div>';
+}
+
+function renderLinks(){
+  var here = (location.protocol.indexOf('http')===0 && location.origin!=='null') ? location.origin+location.pathname : API+'/api/export/html';
+  var embed = '<iframe src="'+here+'" width="100%" height="1400" frameborder="0" style="border:0" allowfullscreen></iframe>';
+  var waLink = 'https://wa.me/'+D.whatsapp;
+
+  document.getElementById('abody').innerHTML=
+  '<div style="display:grid;gap:16px;max-width:900px">'
+
+  +'<div class="acard"><h4>🔗 روابط المتجر</h4><div style="padding:16px">'
+  + linkRow('صفحة المتجر (شاركها مع زبنائك)', here, 'افتحها في أي متصفح أو أرسلها عبر واتساب')
+  + linkRow('لوحة التحكم مباشرة', here+'#admin', 'احفظها في المفضلة — أو انقر 5 مرات على الشعار')
+  + linkRow('واتساب المتجر', waLink, 'يفتح محادثة مباشرة مع رقمك')
+  +'</div></div>'
+
+  +'<div class="acard"><h4>🧩 التضمين في Google Sites</h4><div style="padding:16px">'
+  +'<p style="font-size:12px;font-weight:700;color:rgba(14,23,38,.45);margin-bottom:12px">في محرر Google Sites: <b>إدراج ← تضمين ← رمز التضمين</b> والصق هذا الكود</p>'
+  +'<textarea readonly dir="ltr" rows="3" onfocus="this.select()" style="font-family:monospace;font-size:11px;resize:none;background:var(--paper);line-height:1.8">'+esc(embed)+'</textarea>'
+  +'<button class="abtn" style="margin-top:10px" onclick="copyTxt(this.previousElementSibling.value,this)">📋 نسخ كود التضمين</button>'
+  +'</div></div>'
+
+  +'<div class="acard"><h4>🖥️ الخادم المتصل</h4><div style="padding:16px">'
+  +'<div style="background:var(--mint-l);border-radius:9px;padding:12px 14px">'
+  +'<p style="font-size:11px;font-weight:800;color:var(--mint)">✅ متصل الآن</p>'
+  +'<p dir="ltr" style="font-family:monospace;font-size:11px;font-weight:700;margin-top:4px;word-break:break-all">'+esc(API)+'</p></div>'
+  +'<p style="font-size:12px;font-weight:700;color:rgba(14,23,38,.5);margin-top:12px;line-height:1.9">'
+  +'كل الطلبات والتعديلات تُحفظ في قاعدة بيانات هذا الخادم. إن تغيّر عنوانه اضغط الزر أدناه.</p>'
+  +'<button class="abtn gray" style="margin-top:10px" onclick="changeApi()">تغيير عنوان الخادم</button>'
+  +'</div></div>'
+
+  +'<div class="acard"><h4>📊 ملخص سريع</h4><div style="padding:16px">'
+  +'<div class="astats">'
+  +'<div class="astat"><i style="background:var(--maj-l);color:#17339e">🏷️</i><small>منتجات نشطة</small><b>'+aProducts.filter(function(p){return p.active;}).length+'</b></div>'
+  +'<div class="astat"><i style="background:var(--saf-l);color:#c98600">📦</i><small>إجمالي الطلبات</small><b>'+aOrders.length+'</b></div>'
+  +'</div></div></div>'
+
+  +'</div>';
 }
 
 /* ======================= الإعدادات ======================= */
