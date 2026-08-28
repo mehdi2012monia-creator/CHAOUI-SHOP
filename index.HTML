@@ -17,7 +17,7 @@
 body{font-family:'Tajawal',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,select,textarea{font-family:inherit;width:100%;border:1px solid rgba(14,23,38,.15);background:#fff;border-radius:9px;padding:10px 14px;font-size:14px;outline:none;transition:.2s}
+input,select,textarea{font-family:inherit;width:100%;border:1px solid rgba(14,23,38,.15);background:#fff;border-radius:999px;padding:10px 14px;font-size:14px;outline:none;transition:.2s}
 input:focus,select:focus,textarea:focus{border-color:var(--maj);box-shadow:0 0 0 3px rgba(42,78,219,.15)}
 .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
 .disp{font-family:'Lalezar',cursive;font-weight:400}
@@ -86,7 +86,7 @@ section.pad{padding:52px 0}
 .line img{width:60px;height:60px;border-radius:9px;object-fit:cover}
 
 /* modal admin */
-#adm{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;overflow:y-auto;padding:20px}
+#adm{position:fixed;inset:0;z-index:90;background:var(--paper);display:none;overflow-y:auto;padding:20px}
 #adm.on{display:block}
 .order-card{background:#fff;border-radius:10px;padding:15px;margin-bottom:12px;border:1px solid #ddd}
 </style>
@@ -137,14 +137,14 @@ section.pad{padding:52px 0}
 <div class="dw" id="cartDrawer">
     <div class="dwh">
         <h3>السلة الشرائية</h3>
-        <button onclick="toggleCart(false)">✕</button>
+        <button id="closeCartBtn">✕</button>
     </div>
     <div class="dwb" id="cartItems">
         <!-- عناصر السلة -->
     </div>
     <div class="dwf">
         <p>المجموع: <b id="cartTotal">0</b> د.م</p>
-        <button class="btn1" style="width: 100%; margin-top: 10px;" onclick="openCheckout()">إتمام الطلب</button>
+        <button class="btn1" style="width: 100%; margin-top: 10px;" id="checkoutBtn">إتمام الطلب</button>
     </div>
 </div>
 
@@ -153,13 +153,13 @@ section.pad{padding:52px 0}
     <div class="dw" style="right:0; left:auto; transform:translateX(100%);" id="checkoutDrawer">
         <div class="dwh">
             <h3>معلومات الشحن (الدفع عند الاستلام)</h3>
-            <button onclick="closeCheckout()">✕</button>
+            <button id="closeCheckoutBtn">✕</button>
         </div>
         <div class="dwb">
-            <input type="text" id="cName" placeholder="الاسم الكامل" style="margin-bottom:10px;">
-            <input type="tel" id="cPhone" placeholder="رقم الهاتف" style="margin-bottom:10px;">
-            <textarea id="cAddress" placeholder="العنوان والمدينة" style="margin-bottom:10px;"></textarea>
-            <button class="btn1" id="subBtn" onclick="submitOrder()" style="width:100%;">تأكيد الطلب الآن</button>
+            <input type="text" id="cName" placeholder="الاسم الكامل" style="margin-bottom:10px; border-radius:9px;">
+            <input type="tel" id="cPhone" placeholder="رقم الهاتف" style="margin-bottom:10px; border-radius:9px;">
+            <textarea id="cAddress" placeholder="العنوان والمدينة" style="margin-bottom:10px; border-radius:9px;"></textarea>
+            <button class="btn1" id="subBtn" style="width:100%;">تأكيد الطلب الآن</button>
         </div>
     </div>
 </div>
@@ -168,17 +168,17 @@ section.pad{padding:52px 0}
 <div id="adm">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
         <h2>لوحة التحكم - الطلبيات المباشرة</h2>
-        <button class="btn2" onclick="toggleAdmin(false)">إغلاق</button>
+        <button class="btn2" id="closeAdminBtn">إغلاق</button>
     </div>
     <div id="adminOrders">جارٍ تحميل الطلبيات من قاعدة البيانات...</div>
 </div>
 
-<!-- إعدادات Firebase والسكريبت الأساسي -->
+<!-- إعدادات Firebase والسكريبت البرمجي -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // إعدادات قاعدة البيانات الخاص بمشروعك
+    // إعدادات قاعدة البيانات mehdishop-559a4
     const firebaseConfig = {
         apiKey: "AIzaSyCXmpC94uvcXQb4B2XeZGfJ1V7cz_nS25I",
         authDomain: "mehdishop-559a4.firebaseapp.com",
@@ -201,6 +201,7 @@ section.pad{padding:52px 0}
 
     function renderProducts() {
         const list = document.getElementById('productList');
+        if(!list) return;
         list.innerHTML = defaultProducts.map(p => `
             <div class="card">
                 <div class="cimg"><img src="${p.img}" alt="${p.name}"></div>
@@ -208,19 +209,28 @@ section.pad{padding:52px 0}
                     <div class="cname">${p.name}</div>
                     <div class="crow">
                         <span class="price">${p.price} د.م</span>
-                        <button class="addb press" onclick="addToCart(${p.id})">أضف للسلة</button>
+                        <button class="addb press" data-id="${p.id}">أضف للسلة</button>
                     </div>
                 </div>
             </div>
         `).join('');
+
+        document.querySelectorAll('.addb').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                addToCart(id);
+            });
+        });
     }
 
-    window.addToCart = function(id) {
+    function addToCart(id) {
         const prod = defaultProducts.find(p => p.id === id);
-        cart.push(prod);
-        updateCartView();
-        toggleCart(true);
-    };
+        if(prod) {
+            cart.push(prod);
+            updateCartView();
+            toggleCart(true);
+        }
+    }
 
     function updateCartView() {
         document.getElementById('cnt').innerText = cart.length;
@@ -240,35 +250,37 @@ section.pad{padding:52px 0}
                     <div style="font-weight:bold;">${item.name}</div>
                     <div>${item.price} د.م</div>
                 </div>
-                <button onclick="removeFromCart(${idx})">🗑️</button>
+                <button class="del-btn" data-idx="${idx}">🗑️</button>
             </div>
         `).join('');
+
+        document.querySelectorAll('.del-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                cart.splice(idx, 1);
+                updateCartView();
+            });
+        });
     }
 
-    window.removeFromCart = function(index) {
-        cart.splice(index, 1);
-        updateCartView();
-    };
-
-    window.toggleCart = function(show) {
+    function toggleCart(show) {
         document.getElementById('cartOverlay').classList.toggle('on', show);
         document.getElementById('cartDrawer').classList.toggle('on', show);
-    };
+    }
 
-    window.openCheckout = function() {
+    function openCheckout() {
         if(cart.length === 0) return alert("السلة فارغة!");
         toggleCart(false);
         document.getElementById('checkoutModal').classList.add('on');
         document.getElementById('checkoutDrawer').classList.add('on');
-    };
+    }
 
-    window.closeCheckout = function() {
+    function closeCheckout() {
         document.getElementById('checkoutModal').classList.remove('on');
         document.getElementById('checkoutDrawer').classList.remove('on');
-    };
+    }
 
-    // إرسال الطلب وحفظه في Firebase
-    window.submitOrder = async function() {
+    async function submitOrder() {
         const name = document.getElementById('cName').value.trim();
         const phone = document.getElementById('cPhone').value.trim();
         const address = document.getElementById('cAddress').value.trim();
@@ -301,21 +313,22 @@ section.pad{padding:52px 0}
             btn.disabled = false;
             btn.innerText = "تأكيد الطلب الآن";
         }
-    };
+    }
 
-    // فتح لوحة التحكم عند الضغط المطول على شعار المتجر
     let pressTimer;
     const logo = document.getElementById('logoBtn');
-    logo.addEventListener('mousedown', () => pressTimer = setTimeout(() => toggleAdmin(true), 1500));
-    logo.addEventListener('mouseup', () => clearTimeout(pressTimer));
-    logo.addEventListener('touchstart', () => pressTimer = setTimeout(() => toggleAdmin(true), 1500));
-    logo.addEventListener('touchend', () => clearTimeout(pressTimer));
+    if(logo) {
+        logo.addEventListener('mousedown', () => pressTimer = setTimeout(() => toggleAdmin(true), 1500));
+        logo.addEventListener('mouseup', () => clearTimeout(pressTimer));
+        logo.addEventListener('touchstart', () => pressTimer = setTimeout(() => toggleAdmin(true), 1500));
+        logo.addEventListener('touchend', () => clearTimeout(pressTimer));
+    }
 
-    window.toggleAdmin = function(show) {
+    function toggleAdmin(show) {
         const adm = document.getElementById('adm');
         adm.classList.toggle('on', show);
         if(show) fetchAdminOrders();
-    };
+    }
 
     async function fetchAdminOrders() {
         const container = document.getElementById('adminOrders');
@@ -350,6 +363,12 @@ section.pad{padding:52px 0}
     }
 
     document.getElementById('openCartBtn').addEventListener('click', () => toggleCart(true));
+    document.getElementById('closeCartBtn').addEventListener('click', () => toggleCart(false));
+    document.getElementById('cartOverlay').addEventListener('click', () => toggleCart(false));
+    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    document.getElementById('closeCheckoutBtn').addEventListener('click', closeCheckout);
+    document.getElementById('subBtn').addEventListener('click', submitOrder);
+    document.getElementById('closeAdminBtn').addEventListener('click', () => toggleAdmin(false));
 
     renderProducts();
 </script>
